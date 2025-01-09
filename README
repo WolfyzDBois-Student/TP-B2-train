@@ -1,1 +1,86 @@
 Hello, Train ! 
+
+## Enum
+
+```cs
+public enum ColorEnum
+{
+    ColorGreen = 0,
+    ColorRed = 1,
+    ColorBlue = 2,
+    ColorYellow = 3
+}
+```
+
+On peut attribuer des valeurs, ou récupérer la valeur
+```cs
+    ColorEnum  myvar = ColorEnum.ColorGreen;
+```
+
+## Field & Property
+
+```cs
+public class Card
+{
+    // Field
+    private string Value;
+
+    // Constructeur
+    public Card(string cardValue)
+    {
+        Value = cardValue;
+    }
+
+    // Méthode pour récupérer la valeur de Value
+    public string GetCardValue()
+    {
+        return Value;
+    }
+}
+```
+
+> [!CAUTION]
+> Attention à ne pas confondre Atteribut (= field) et Property (avec getter et setter)
+
+> [!WARNING]
+> Un constructeur est indispensable
+
+## Créer la parentalité
+
+public class BasicCard : Card
+{
+    public ColorEnum Color;
+
+    public BasicCard(string cardValue, ColorEnum cardColor) : base(cardValue)
+    {
+        if (cardValue.Length > 1 || cardValue[0] < '0' || cardValue[0] > '9')
+        {
+            throw new UnoException();
+        }
+
+        Color = cardColor;
+    }
+}
+
+Ici, le `:Card` permet de rendre BasicCard enfant de Card, et Card est parent.
+
+> [!CAUTION]
+> On ne définie pas la valeur avec un `Value = ` mais en utilisant le mot ` : base(cardValue)` dans la définition de la méthode
+
+## Custom Exception
+
+```cs
+public class UnoException : Exception { }
+
+public GaulsException() :base ("A problem happened in the village"){ }
+public GaulsException(string message) :base ($"A problem happened in the village: {message}") { }
+
+throw new UnoException();
+```
+
+## Test unitaire : Constructeur
+
+```cs
+Card card = new Card("7");
+Assert.Equal("7", card.GetCardValue());
+```
