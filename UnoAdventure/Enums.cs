@@ -1,6 +1,6 @@
 namespace UnoAdventure;
 
-public enum Enums
+public enum ColorEnum
 {
     ColorGreen = 0,
     ColorRed = 1,
