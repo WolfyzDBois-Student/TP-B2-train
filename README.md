@@ -2,6 +2,112 @@ Hello, Train !
 
 # Les Arrays
 
+## Les base
+
+```csharp
+using System;
+
+namespace ArrayExamples
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Tableaux unidimensionnels
+            Console.WriteLine("Tableaux unidimensionnels:");
+            SingleDimensionArray();
+
+            // Tableaux multidimensionnels
+            Console.WriteLine("\nTableaux multidimensionnels:");
+            MultiDimensionArray();
+
+            // Tableaux imbriqués
+            Console.WriteLine("\nTableaux imbriqués:");
+            JaggedArray();
+        }
+
+        // Méthode pour démontrer les tableaux unidimensionnels
+        static void SingleDimensionArray()
+        {
+            // Déclaration et initialisation d'un tableau unidimensionnel
+            int[] numbers = { 1, 2, 3, 4, 5 };
+
+            // Accès aux éléments
+            Console.WriteLine("Premier élément: " + numbers[0]);
+            Console.WriteLine("Dernier élément: " + numbers[numbers.Length - 1]);
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments:");
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            // Modification d'un élément
+            numbers[1] = 10;
+            Console.WriteLine("Après modification: " + numbers[1]);
+        }
+
+        // Méthode pour démontrer les tableaux multidimensionnels
+        static void MultiDimensionArray()
+        {
+            // Déclaration et initialisation d'un tableau 2D
+            int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
+
+            // Accès aux éléments
+            Console.WriteLine("Élément [0,1]: " + matrix[0, 1]);
+            Console.WriteLine("Élément [1,2]: " + matrix[1, 2]);
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments:");
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            // Modification d'un élément
+            matrix[0, 1] = 20;
+            Console.WriteLine("Après modification: " + matrix[0, 1]);
+        }
+
+        // Méthode pour démontrer les tableaux imbriqués (jagged arrays)
+        static void JaggedArray()
+        {
+            // Déclaration et initialisation d'un tableau imbriqué
+            int[][] jagged = new int[3][];
+            jagged[0] = new int[] { 1, 2 };
+            jagged[1] = new int[] { 3, 4, 5 };
+            jagged[2] = new int[] { 6, 7, 8, 9 };
+
+            // Accès aux éléments
+            Console.WriteLine("Élément [0][1]: " + jagged[0][1]);
+            Console.WriteLine("Élément [2][3]: " + jagged[2][3]);
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments:");
+            for (int i = 0; i < jagged.Length; i++)
+            {
+                for (int j = 0; j < jagged[i].Length; j++)
+                {
+                    Console.Write(jagged[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            // Modification d'un élément
+            jagged[1][1] = 10;
+            Console.WriteLine("Après modification: " + jagged[1][1]);
+        }
+    }
+}
+
+```
+
+
 ## Initialisation simple
 
 ```cs
@@ -337,4 +443,302 @@ public string Name { get; }
             return NbCards;
         }
     }
+```
+
+### Global POO 
+
+```csharp
+using System;
+
+namespace POOExamples
+{
+    // Classe de base (Base Class)
+    public class Animal
+    {
+        public string Name { get; set; }
+
+        public Animal(string name)
+        {
+            Name = name;
+        }
+
+        public virtual void Speak()
+        {
+            Console.WriteLine($"{Name} makes a sound.");
+        }
+    }
+
+    // Classe dérivée (Derived Class)
+    public class Dog : Animal
+    {
+        public string Breed { get; set; }
+
+        public Dog(string name, string breed) : base(name)
+        {
+            Breed = breed;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine($"{Name} barks.");
+        }
+
+        public void Fetch()
+        {
+            Console.WriteLine($"{Name} is fetching!");
+        }
+    }
+
+    // Autre classe dérivée
+    public class Cat : Animal
+    {
+        public Cat(string name) : base(name) { }
+
+        public override void Speak()
+        {
+            Console.WriteLine($"{Name} meows.");
+        }
+
+        public void Scratch()
+        {
+            Console.WriteLine($"{Name} is scratching!");
+        }
+    }
+
+    // Classe principale pour démonstration
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Instanciation des objets Dog et Cat
+            Dog dog = new Dog("Rex", "German Shepherd");
+            Cat cat = new Cat("Whiskers");
+
+            // Appel des méthodes
+            dog.Speak();
+            dog.Fetch();
+
+            cat.Speak();
+            cat.Scratch();
+
+            // Utilisation de la classe de base
+            Animal genericAnimal = new Animal("Generic Animal");
+            genericAnimal.Speak();
+
+            // Polymorphisme : appel de la méthode Speak selon le type réel de l'objet
+            Animal myDog = new Dog("Buddy", "Labrador");
+            Animal myCat = new Cat("Mittens");
+
+            myDog.Speak();
+            myCat.Speak();
+
+            // Conversion implicite et explicite
+            Animal someAnimal = new Dog("Charlie", "Bulldog");
+            if (someAnimal is Dog someDog)
+            {
+                someDog.Fetch();
+            }
+        }
+    }
+}
+
+```
+
+### Global Collections
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace CollectionsExamples
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Listes
+            Console.WriteLine("Listes:");
+            ListExample();
+
+            // Dictionnaires
+            Console.WriteLine("\nDictionnaires:");
+            DictionaryExample();
+
+            // Files (Queues)
+            Console.WriteLine("\nFiles (Queues):");
+            QueueExample();
+
+            // Piles (Stacks)
+            Console.WriteLine("\nPiles (Stacks):");
+            StackExample();
+        }
+
+        // Méthode pour démontrer l'utilisation des Listes
+        static void ListExample()
+        {
+            // Déclaration et initialisation d'une liste
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+            // Ajout d'un élément
+            numbers.Add(6);
+
+            // Accès aux éléments
+            Console.WriteLine("Premier élément: " + numbers[0]);
+            Console.WriteLine("Dernier élément: " + numbers[numbers.Count - 1]);
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments:");
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            // Suppression d'un élément
+            numbers.Remove(3);
+            Console.WriteLine("Après suppression du numéro 3:");
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
+
+        // Méthode pour démontrer l'utilisation des Dictionnaires
+        static void DictionaryExample()
+        {
+            // Déclaration et initialisation d'un dictionnaire
+            Dictionary<string, int> ages = new Dictionary<string, int>
+            {
+                { "Alice", 30 },
+                { "Bob", 25 }
+            };
+
+            // Ajout d'un élément
+            ages["Charlie"] = 35;
+
+            // Accès aux éléments
+            Console.WriteLine("Age de Alice: " + ages["Alice"]);
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments:");
+            foreach (var kvp in ages)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            }
+
+            // Suppression d'un élément
+            ages.Remove("Bob");
+            Console.WriteLine("Après suppression de Bob:");
+            foreach (var kvp in ages)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            }
+        }
+
+        // Méthode pour démontrer l'utilisation des Files (Queues)
+        static void QueueExample()
+        {
+            // Déclaration et initialisation d'une file
+            Queue<string> queue = new Queue<string>();
+
+            // Enqueue (ajout) d'éléments
+            queue.Enqueue("Premier");
+            queue.Enqueue("Deuxième");
+            queue.Enqueue("Troisième");
+
+            // Dequeue (retrait) d'un élément
+            Console.WriteLine("Retrait: " + queue.Dequeue());
+
+            // Visualisation du prochain élément
+            Console.WriteLine("Prochain élément: " + queue.Peek());
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments dans la file:");
+            foreach (var item in queue)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        // Méthode pour démontrer l'utilisation des Piles (Stacks)
+        static void StackExample()
+        {
+            // Déclaration et initialisation d'une pile
+            Stack<string> stack = new Stack<string>();
+
+            // Push (ajout) d'éléments
+            stack.Push("Premier");
+            stack.Push("Deuxième");
+            stack.Push("Troisième");
+
+            // Pop (retrait) d'un élément
+            Console.WriteLine("Retrait: " + stack.Pop());
+
+            // Visualisation du prochain élément
+            Console.WriteLine("Prochain élément: " + stack.Peek());
+
+            // Boucle à travers les éléments
+            Console.WriteLine("Tous les éléments dans la pile:");
+            foreach (var item in stack)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+```
+
+### Application 
+
+Création d'un tableau de taille 5 x 2, avec chaque case un array de taille 3, et dedans une liste avec des entiers
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace NestedArrayExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Déclaration du tableau principal de taille 5 x 2
+            List<int>[,][] nestedArray = new List<int>[5, 2][];
+
+            // Boucle à travers le tableau principal
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    // Initialisation du sous-tableau de taille 3
+                    nestedArray[i, j] = new List<int>[3];
+
+                    // Boucle à travers chaque élément du sous-tableau
+                    for (int k = 0; k < 3; k++)
+                    {
+                        // Initialisation de la liste avec un nombre entier
+                        nestedArray[i, j][k] = new List<int> { i * 10 + j * 5 + k };
+                    }
+                }
+            }
+
+            // Affichage des éléments du tableau imbriqué
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Console.Write($"nestedArray[{i}, {j}]: ");
+                    for (int k = 0; k < 3; k++)
+                    {
+                        Console.Write("{ ");
+                        foreach (int number in nestedArray[i, j][k])
+                        {
+                            Console.Write(number + " ");
+                        }
+                        Console.Write("} ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
+    }
+}
 ```
