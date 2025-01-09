@@ -1,6 +1,3 @@
 namespace UnoAdventure;
 
-public class UnoException
-{
-    
-}
+public class UnoException : Exception { }
