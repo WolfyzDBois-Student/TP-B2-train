@@ -1,5 +1,250 @@
 Hello, Train ! 
 
+# Les Arrays
+
+## Initialisation simple
+
+```cs
+public Card[] Hand { get; set; } // POO
+
+public Player()
+{
+    Hand = new Card[0]; // Init un array de taille 0
+}
+```
+
+Avoir la taille : `Hand.Length`
+
+# Dictionnaire
+
+```cs
+
+// Dictionnaire de string, avec des clés en int
+var dict = new Dictionary<int, string>();
+
+// Ajout d'éléments (2 moyens)
+dict.Add(2, "Justforkix");
+dict[8] = "Operatix";
+
+// Accéder à un élément (attention aux index en-dehors)
+var gaulish6 = dict[6];
+	 
+// Supprimer un élément
+dict.Remove(6);
+
+// Afficher les éléments
+foreach (var kvp in dict) 
+    Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
+```
+
+> [!WARNING]
+> On peut avoir plusieurs fois la même valeur, mais pas la même clé (ici on peut avoir 2 "Astérix" mais pas 2 fois 6)
+
+
+# Listes
+
+```cs
+// Création
+var gaulish = new List<string>();
+
+// Ajout d'élément
+gaulish.Add("Asterix");
+
+// Accéder à un élément
+Console.WriteLine(gaulish[]); //Dogmatix
+
+// Insérer des éléments (entre 2 élements)
+gaulish.Insert(3, "Vitalstatistix");
+
+// Supprimer
+gaulish.Remove("Vitalstatistix"); // Vakeyr
+gaulish.RemoveAt(3); // Index
+
+// Afficher avec foreach
+Console.WriteLine(gaulish); //System.Collections.Generic.List`1[System.String]
+gaulish.ForEach(item => Console.Write($"{item}, ")); //Asterix, Obelix, Dogmatix, Getafix,
+
+// Vérifier si un élément est dedans
+if (gaulish.Contains("Obelix")) ...
+
+// Autres recherches 
+if (gaulish.Exists(x => x.Contains("Ast")))
+	Console.WriteLine("Exists Ast");
+
+var res = gaulish.Find(x => x.Contains("Dogma"));
+Console.WriteLine($"Find: {res}"); //Find: Dogmatix
+var index = gaulish.FindIndex(x => x.Contains("lix"));
+Console.WriteLine($"First lix find at {index}"); //First lix find at 1
+var even = gaulish.FindAll(x => x.Contains("ix"));
+even.ForEach(item => Console.Write($"{item}, ")); //Asterix, Obelix, Dogmatix, Getafix,
+	 
+// Avoir quelques éléments
+var sub = gaulish.GetRange(1, 2);
+sub.ForEach(item => Console.Write($"{item}, ")); //Obelix, Dogmatix,
+```
+
+
+# Queue
+
+```cs
+//Create and Add Elements in Queue
+
+	Queue<string> myQueue = new Queue<string>();
+
+	myQueue.Enqueue("Asterix");
+
+	myQueue.Enqueue("Justforkix");
+
+	myQueue.Enqueue("Cacofonix");
+
+	myQueue.Enqueue("Obelix");
+
+	 
+
+	//Display Queues' elements
+
+	foreach (var item in myQueue)
+
+	    Console.Write(item + ",");
+
+	Console.WriteLine();
+
+	//Asterix,Justforkix,Cacofonix,Obelix,
+
+	 
+
+	//Retrieve elements from a Queue
+
+	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//4
+
+	Console.WriteLine();
+
+	 
+
+	Console.Write(myQueue.Dequeue());//Asterix
+
+	Console.WriteLine();
+    Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
+    
+    	Console.WriteLine();
+    
+    	 
+    
+    	Console.WriteLine(myQueue.Peek());//Justforkix
+    
+    	Console.WriteLine();
+    
+    	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
+    
+    	Console.WriteLine();
+    
+    	 
+    
+    	// Contains - look for an element
+    
+    	if (myQueue.Contains("Cacofonix"))
+    
+    	    Console.WriteLine("Does contain Cacofonix");
+    
+    	 
+    
+    	if (!myQueue.Contains("Asterix"))
+    
+    	    Console.WriteLine("Does not contain Asterix");
+    
+    	 
+    
+    	//Clear Queue
+    
+    	myQueue.Clear();
+    
+    	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//0
+    	
+```
+
+
+## Stack
+
+```cs
+//Create and Add Elements in Stack
+
+	Stack<string> myStack = new Stack<string>();
+
+	myStack.Push("Asterix");
+
+	myStack.Push("Obelix");
+
+	myStack.Push("Geriatrix");
+
+	myStack.Push("Operatix");
+
+	 
+
+	//Display Stacks' elements
+
+	foreach (var item in myStack)
+
+	    Console.Write(item + ","); 
+
+	Console.WriteLine();
+
+	//Operatix,Geriatrix,Obelix,Asterix,
+
+	 
+
+	//Retrieve elements from a Stack
+
+	Console.Write("Number of elements in Stack: {0}", myStack.Count);//4
+
+	Console.WriteLine();
+
+	 
+
+	Console.Write(myStack.Pop());//Operatix
+
+	Console.WriteLine();
+	Console.Write("Number of elements in Stack: {0}", myStack.Count);//3
+    
+    	Console.WriteLine();
+    
+    	 
+    
+    	 
+    
+    	Console.WriteLine(myStack.Peek());//Geriatrix
+    
+    	Console.WriteLine();
+    
+    	Console.Write("Number of elements in Stack: {0}", myStack.Count);//3
+    
+    	Console.WriteLine();
+    
+    	 
+    
+    	// Contains - look for an element
+    
+    	if (myStack.Contains("Geriatrix"))
+    
+    	    Console.WriteLine("Does contain Geriatrix");
+    
+    	 
+    
+    	if (!myStack.Contains("Operatix"))
+    
+    	    Console.WriteLine("Does not contain Operatix");
+    
+    	 
+    
+    	//Clear Stack
+    
+    	myStack.Clear();
+    
+    	Console.Write("Number of elements in Stack: {0}", myStack.Count);//0
+```
+
+
+# POO
+
 ## Enum
 
 ```cs
@@ -83,4 +328,20 @@ throw new UnoException();
 ```cs
 Card card = new Card("7");
 Assert.Equal("7", card.GetCardValue());
+```
+
+## Getter
+
+```cs
+public string Name { get; }
+
+    public Card[] Hand { get; set; }
+
+    public ushort NbCards
+    {
+        get
+        {
+            return NbCards;
+        }
+    }
 ```
