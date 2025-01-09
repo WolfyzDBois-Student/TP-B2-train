@@ -72,97 +72,36 @@ int[][] jagged3 = { vector, vector };
 ```csharp
 char[] vector1 = { 'a', 'b', 'c', 'd' };
 
-	 
+for (int i = 0; i < vector1.Length; ++i) 
+    Console.Write(" {0}", vector1[i]); 
 
-	Console.Write("vector:");
-
-	for (int i = 0; i < vector1.Length; ++i) 
-
-	    Console.Write(" {0}", vector1[i]); 
-
-	Console.WriteLine();
-
-	//vector: a b c d
-
-	 
-
-	foreach (char elt in vector1) 
-
-	    Console.Write(" {0}", elt);
+foreach (char elt in vector1) 
+    Console.Write(" {0}", elt);
 ```
 
 ```csharp
 int[,] matrix2 = { { 2, 3 }, { 5, 6 }, { 8, 9 } };
 
-	 
-
-	Console.WriteLine("matrix:");
-
-	for (int i = 0; i < matrix2.GetLength(0); ++i)
-
-	{
-
-	    for (int j = 0; j < matrix2.GetLength(1); ++j)
-
-	        Console.Write($" {matrix2[i, j]}");
-
-	    Console.WriteLine();
-
-	}
-
-	 
-
-	/*
-
-	 * matrix:
-
-	 *   2 3
-
-	 *   5 6
-
-	 *   8 9 
-
-	 */
+for (int i = 0; i < matrix2.GetLength(0); ++i)
+{
+    for (int j = 0; j < matrix2.GetLength(1); ++j)
+        Console.Write($" {matrix2[i, j]}");
+}
 ```
 
 ```csharp
 String[][] jagged1 = new String[3][];
 
-	jagged1[0] = new String[] { "a", "b", "c" };
+jagged1[0] = new String[] { "a", "b", "c" };
+jagged1[1] = new String[] { "d" };
+jagged1[2] = new String[] { "e", "f", "g", "h", "i" };
 
-	jagged1[1] = new String[] { "d" };
-
-	jagged1[2] = new String[] { "e", "f", "g", "h", "i" };
-
-	 
-
-	Console.WriteLine("jagged:");
-
-	for (int i = 0; i < jagged1.Length; ++i)
-
-	{
-
+for (int i = 0; i < jagged1.Length; ++i)
+{
 	    for (int j = 0; j < jagged1[i].Length; ++j)
-
 	        Console.Write($" {jagged1[i][j]}");
+}
 
-	    Console.WriteLine();
-
-	}
-
-	 
-
-	/*
-
-	 * jagged:
-
-	 *  a b c    
-
-	 *  d        
-
-	 *  e f g h i
-
-	 */
 ```
 
 Avoir la taille : `Hand.Length`
@@ -247,144 +186,53 @@ Queue<string> myQueue = new Queue<string>();
 myQueue.Enqueue("Asterix");
 
 //Display Queues' elements
+foreach (var item in myQueue)
+Console.Write(item + ",");
 
-	foreach (var item in myQueue)
-
-	    Console.Write(item + ",");
-
-	Console.WriteLine();
-
-	//Asterix,Justforkix,Cacofonix,Obelix,
-
-	 
-
-	//Retrieve elements from a Queue
-
-	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//4
-
-	Console.WriteLine();
-
-	 
-
-	Console.Write(myQueue.Dequeue());//Asterix
-
-	Console.WriteLine();
-    Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
+//Retrieve elements from a Queue
+Console.Write("Number of elements in Queue: {0}", myQueue.Count);//4
+Console.Write(myQueue.Dequeue());//Asterix
+Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
+Console.WriteLine(myQueue.Peek());//Justforkix    
+Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
+        
+// Contains - look for an element
+if (myQueue.Contains("Cacofonix"))
+    Console.WriteLine("Does contain Cacofonix");
     
-    	Console.WriteLine();
-    
+if (!myQueue.Contains("Asterix")) ... 
     	 
-    
-    	Console.WriteLine(myQueue.Peek());//Justforkix
-    
-    	Console.WriteLine();
-    
-    	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//3
-    
-    	Console.WriteLine();
-    
-    	 
-    
-    	// Contains - look for an element
-    
-    	if (myQueue.Contains("Cacofonix"))
-    
-    	    Console.WriteLine("Does contain Cacofonix");
-    
-    	 
-    
-    	if (!myQueue.Contains("Asterix"))
-    
-    	    Console.WriteLine("Does not contain Asterix");
-    
-    	 
-    
-    	//Clear Queue
-    
-    	myQueue.Clear();
-    
-    	Console.Write("Number of elements in Queue: {0}", myQueue.Count);//0
-    	
+//Clear Queue
+myQueue.Clear();
 ```
-
+> [!TIPS]
+> Attention à la différence entre Enqueue et Peek : Enqueue retire et Peek non il récupère juste (à confirmer)
 
 ## Stack
 
 ```cs
 //Create and Add Elements in Stack
+Stack<string> myStack = new Stack<string>();
+myStack.Push("Asterix");
 
-	Stack<string> myStack = new Stack<string>();
+//Display Stacks' elements
+foreach (var item in myStack)
+    Console.Write(item + ","); 
 
-	myStack.Push("Asterix");
-
-	myStack.Push("Obelix");
-
-	myStack.Push("Geriatrix");
-
-	myStack.Push("Operatix");
-
+//Retrieve elements from a Stack
+Console.Write("Number of elements in Stack: {0}", myStack.Count);//4
 	 
+Console.Write(myStack.Pop()); // Retire l'élément
+Console.WriteLine(myStack.Peek());    
 
-	//Display Stacks' elements
-
-	foreach (var item in myStack)
-
-	    Console.Write(item + ","); 
-
-	Console.WriteLine();
-
-	//Operatix,Geriatrix,Obelix,Asterix,
-
-	 
-
-	//Retrieve elements from a Stack
-
-	Console.Write("Number of elements in Stack: {0}", myStack.Count);//4
-
-	Console.WriteLine();
-
-	 
-
-	Console.Write(myStack.Pop());//Operatix
-
-	Console.WriteLine();
-	Console.Write("Number of elements in Stack: {0}", myStack.Count);//3
+// Contains - look for an element
+if (myStack.Contains("Geriatrix"))
+    Console.WriteLine("Does contain Geriatrix");
+if (!myStack.Contains("Operatix")) ...
     
-    	Console.WriteLine();
-    
-    	 
-    
-    	 
-    
-    	Console.WriteLine(myStack.Peek());//Geriatrix
-    
-    	Console.WriteLine();
-    
-    	Console.Write("Number of elements in Stack: {0}", myStack.Count);//3
-    
-    	Console.WriteLine();
-    
-    	 
-    
-    	// Contains - look for an element
-    
-    	if (myStack.Contains("Geriatrix"))
-    
-    	    Console.WriteLine("Does contain Geriatrix");
-    
-    	 
-    
-    	if (!myStack.Contains("Operatix"))
-    
-    	    Console.WriteLine("Does not contain Operatix");
-    
-    	 
-    
-    	//Clear Stack
-    
-    	myStack.Clear();
-    
-    	Console.Write("Number of elements in Stack: {0}", myStack.Count);//0
+//Clear Stack
+myStack.Clear();
+Console.Write("Number of elements in Stack: {0}", myStack.Count);//0
 ```
 
 
