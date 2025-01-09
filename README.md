@@ -13,7 +13,162 @@ public Player()
 }
 ```
 
+### Simple dimension
+```csharp
+int[] vector1;
+vector1 = new int[8];
+
+int[] vector1bis = new int[5];
+
+int[] vector2 = new int[] { 2, 4, 6, 8 };
+char[] vector3 = { 'a', 'b', 'c', 'd' };
+```
+
+### Mutli dimension
+
+```csharp
+int[,] matrix2D1 = new int[2, 2];
+
+matrix2D1[0, 0] = 1;
+matrix2D1[0, 1] = 2;
+matrix2D1[1, 0] = 3;
+matrix2D1[1, 1] = 4;
+
+int[,] matrix2D2 = { { 2, 3 },
+                     { 5, 6 },
+                     { 8, 9 } 
+};
+
+int[,,] matrix3D2 = new int[,,] { 
+						{ { 1, 2, 3 }, { 4, 5, 6 } },
+						{ { 7, 8, 9 }, { 10, 11, 12 } } 
+						};
+```
+
+### Jagged Array
+
+```csharp
+String[][] jagged1 = new String[3][];
+
+jagged1[0] = new String[] { "a", "b", "c" };
+jagged1[1] = new String[] { "d" };
+jagged1[2] = new String[] { "e", "f", "g", "h", "i" };
+
+char[][] jagged2 =
+{
+new char[] { 'a', 'b', 'c' },
+new char[] { 'd', 'e' },
+new char[] { 'f', 'g', 'h', 'i' }
+};
+
+int[] vector = {1, 2, 3, 4, 5};
+int[][] jagged3 = { vector, vector };
+```
+
+### Display
+
+#### Simple Dimension
+
+```csharp
+char[] vector1 = { 'a', 'b', 'c', 'd' };
+
+	 
+
+	Console.Write("vector:");
+
+	for (int i = 0; i < vector1.Length; ++i) 
+
+	    Console.Write(" {0}", vector1[i]); 
+
+	Console.WriteLine();
+
+	//vector: a b c d
+
+	 
+
+	foreach (char elt in vector1) 
+
+	    Console.Write(" {0}", elt);
+```
+
+```csharp
+int[,] matrix2 = { { 2, 3 }, { 5, 6 }, { 8, 9 } };
+
+	 
+
+	Console.WriteLine("matrix:");
+
+	for (int i = 0; i < matrix2.GetLength(0); ++i)
+
+	{
+
+	    for (int j = 0; j < matrix2.GetLength(1); ++j)
+
+	        Console.Write($" {matrix2[i, j]}");
+
+	    Console.WriteLine();
+
+	}
+
+	 
+
+	/*
+
+	 * matrix:
+
+	 *   2 3
+
+	 *   5 6
+
+	 *   8 9 
+
+	 */
+```
+
+```csharp
+String[][] jagged1 = new String[3][];
+
+	jagged1[0] = new String[] { "a", "b", "c" };
+
+	jagged1[1] = new String[] { "d" };
+
+	jagged1[2] = new String[] { "e", "f", "g", "h", "i" };
+
+	 
+
+	Console.WriteLine("jagged:");
+
+	for (int i = 0; i < jagged1.Length; ++i)
+
+	{
+
+	    for (int j = 0; j < jagged1[i].Length; ++j)
+
+	        Console.Write($" {jagged1[i][j]}");
+
+	    Console.WriteLine();
+
+	}
+
+	 
+
+	/*
+
+	 * jagged:
+
+	 *  a b c    
+
+	 *  d        
+
+	 *  e f g h i
+
+	 */
+```
+
 Avoir la taille : `Hand.Length`
+
+> [!CAUTION]
+> L'index est très important
 
 # Dictionnaire
 
@@ -88,20 +243,10 @@ sub.ForEach(item => Console.Write($"{item}, ")); //Obelix, Dogmatix,
 
 ```cs
 //Create and Add Elements in Queue
+Queue<string> myQueue = new Queue<string>();
+myQueue.Enqueue("Asterix");
 
-	Queue<string> myQueue = new Queue<string>();
-
-	myQueue.Enqueue("Asterix");
-
-	myQueue.Enqueue("Justforkix");
-
-	myQueue.Enqueue("Cacofonix");
-
-	myQueue.Enqueue("Obelix");
-
-	 
-
-	//Display Queues' elements
+//Display Queues' elements
 
 	foreach (var item in myQueue)
 
